@@ -4,43 +4,47 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<title>Timed Coding Quiz</title>
 
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+			integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 		<link rel="stylesheet" href="./assets/css/style.css" />
+
+		<title>Front-End Coding Developer Quiz</title>
 	</head>
 
 	<body>
-		<div class="scores"><a href="highscores.html">View High Scores</a></div>
+		<!-- <div class="scores"><a href="highscores.html">View High Scores</a></div>
 
-		<div class="timer">Time: <span id="time">0</span></div>
+		<div class="timer">Time: <span id="time">0</span></div> -->
 
-		<div class="wrapper">
-			<div id="start-screen" class="start">
-				<h1>Coding Quiz Challenge</h1>
-				<p>
-					Try to answer the following code-related questions within the time
-					limit. Keep in mind that incorrect answers will penalize your
-					score/time by ten seconds!
-				</p>
-				<button id="start">Start Quiz</button>
-			</div>
+		<!-- Start quiz button -->
+		<button id="start_btn">Start Quiz</button>
 
-			<div id="questions" class="hide">
-				<h2 id="question-title"></h2>
-				<div id="choices" class="choices"></div>
-			</div>
+        <!-- Info box -->
+        <div class="info_box">
 
-			<div id="end-screen" class="hide">
-				<h2>All done!</h2>
-				<p>Your final score is <span id="final-score"></span>.</p>
-				<p>
-					Enter initials: <input type="text" id="initials" max="3" />
-					<button id="submit">Submit</button>
-				</p>
-			</div>
+            <div class="info_title">
+                <span>Rules of the quiz</span>
+            </div>
 
-			<div id="feedback" class="feedback hide"></div>
-		</div>
+            <div class="info_list">
+                <div class="info">1. You will have only <span>15 seconds</span> per question</div>
+                <div class="info">2. Once you select your answer, you can't reselect</div>
+                <div class="info">3. You can'tt select any answers after the time has ran out.</div>
+                <div class="info">You can't exit from the Quiz once it begins.</div>
+                <div class="info">You'll get points on the basis of your correct answers</div>
+            </div>
+
+            <div class="buttons">
+                <button class="quit">Exit Quiz</button>
+                <button class="restart">Continue</button>
+            </div>
+        </div>
 
 		<script src="./assets/js/questions.js"></script>
 		<script src="./assets/js/logic.js"></script>
