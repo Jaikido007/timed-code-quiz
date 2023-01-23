@@ -18,7 +18,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
+	font-family: "Poppins", sans-serif;
 }
 
 html {
@@ -31,12 +31,14 @@ body {
 
 .start_btn,
 .info_box,
-.quiz_box {
+.quiz_box,
+.result_box {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	box-shadow: 0 0.4rem 0.8rem 0 rgba(0,0,0,0.2), 0 0.6rem 2rem 0 rgba(0,0,0,0.19);
+	box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2),
+		0 0.6rem 2rem 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Start button */
@@ -50,14 +52,17 @@ body {
 	border-radius: 0.5rem;
 	background: var(--white);
 	cursor: pointer;
+	/* transition: all 0.3s ease; */
 }
 
 /* Info box */
 .info_box {
-	display: none;
 	width: 54rem;
 	background: var(--white);
 	border-radius: 0.5rem;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, -50%) scale(0.9);
 }
 
 .info_box .info_title {
@@ -127,10 +132,12 @@ body {
 
 /* Quiz box */
 .quiz_box {
-	display: none;
 	width: 55rem;
 	background-color: var(--white);
 	border-radius: 0.5rem;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, -50%) scale(0.9);
 }
 
 .quiz_box header {
@@ -289,3 +296,65 @@ footer .next_btn {
 .next_btn:hover {
 	background: var(--hover);
 }
+
+/* Result box */
+.result_box {
+	font-size: 1.6rem;
+	background: var(--white);
+	width: 45rem;
+	padding: 2.5rem 3rem;
+	border-radius: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	justify-content: space-between;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, -50%) scale(0.9);
+}
+
+.result_box .icon {
+	font-size: 10rem;
+	color: var(--main);
+	margin-bottom: 1rem;
+}
+
+.result_box .complete_text{
+	font-size: 2rem;
+	font-weight: 500;
+}
+
+.result_box .score_text span {
+	display: flex;
+	margin: 1rem 0;
+	font-size: 1.8rem;
+	font-weight: 400;
+}
+
+.score_text span p { 
+	font-weight: 600;
+	padding: 0 0.4rem;
+}
+
+.result_box .buttons {
+	display: flex;
+	margin: 2rem 0;
+}
+
+.result_box .buttons button{
+	margin: 0 1rem;
+	height: 4rem;
+	padding: 0 2rem;
+	border: none;
+	outline: none;
+	font-size: 1.8rem;
+	font-weight: 500;
+	border-radius: 0.5rem;
+	border: 0.1rem solid var(--main);
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+
+
