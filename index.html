@@ -25,28 +25,73 @@
 		<!-- Start quiz button -->
 		<div class="start_btn"><button>Start Quiz</button></div>
 
-        <!-- Info box -->
-        <div class="info_box">
+		<!-- Info box -->
+		<div class="info_box">
+			<div class="info_title">
+				<span>Rules of the Quiz</span>
+			</div>
 
-            <div class="info_title">
-                <span>Rules of the Quiz</span>
-            </div>
+			<div class="info_list">
+				<div class="info">
+					1. You will have only <span>15 seconds</span> per question
+				</div>
+				<div class="info">
+					2. Once you select your answer, you can't reselect
+				</div>
+				<div class="info">
+					3. You can'tt select any answers after the time has ran out.
+				</div>
+				<div class="info">4. You can't exit from the Quiz once it begins.</div>
+				<div class="info">
+					5. You'll get points on the basis of your correct answers
+				</div>
+			</div>
 
-            <div class="info_list">
-                <div class="info">1. You will have only <span>15 seconds</span> per question</div>
-                <div class="info">2. Once you select your answer, you can't reselect</div>
-                <div class="info">3. You can'tt select any answers after the time has ran out.</div>
-                <div class="info">4. You can't exit from the Quiz once it begins.</div>
-                <div class="info">5. You'll get points on the basis of your correct answers</div>
-            </div>
+			<div class="buttons">
+				<button class="quit">Exit Quiz</button>
+				<button class="restart">Continue</button>
+			</div>
+		</div>
 
-            <div class="buttons">
-                <button class="quit">Exit Quiz</button>
-                <button class="restart">Continue</button>
-            </div>
-        </div>
+		<!-- Quiz box -->
+		<div class="quiz_box">
+			<header>
+				<div class="title">Timed JavaScript Quiz</div>
+				<div class="timer">
+					<div class="time_text">Time Remaining</div>
+					<div class="timer_sec">15</div>
+				</div>
+			</header>
+			<section>
+				<div class="question_text">
+					<span>How do you write 'Hello, World!' in an alert box?</span>
+				</div>
+				<div class="option_list">
+					<div class="option">
+						<span>alertBox('Hello, world!');</span>
+						<div class="icon check"><i class="fas fa-check"></i></div>
+					</div>
+					<div class="option">
+						<span>alert('Hello, world!');</span>
+						<div class="icon cross"><i class="fas fa-cross"></i></div>
+					</div>
+					<div class="option">
+						<span>msg('Hello, world!');</span>
+					</div>
+					<div class="option">
+						<span>msgBox('Hello, world!');</span>
+					</div>
+				</div>
+			</section>
 
-        
+			<!-- Quiz box footer -->
+            <footer>
+                <div class="total_questions">
+                    <span><p>2</p>of<p>5</p>Questions</span>
+                </div>
+                <button class="next_btn">Next Question</button>
+            </footer>
+		</div>
 
 		<script src="./assets/js/questions.js"></script>
 		<script src="./assets/js/logic.js"></script>
