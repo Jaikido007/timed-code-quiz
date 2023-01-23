@@ -65,6 +65,13 @@ body {
 	transform: translate(-50%, -50%) scale(0.9);
 }
 
+.info_box.activeInfo {
+	z-index: 5;
+	opacity: 1;
+	pointer-events: auto;
+	transform: translate(-50%, -50%) scale(1);
+}
+
 .info_box .info_title {
 	height: 6rem;
 	border-bottom: 0.1rem solid var(--border);
