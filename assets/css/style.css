@@ -274,6 +274,10 @@ section .option_list .option:hover {
 	background: #f8d7da;
 }
 
+.option_list .option.disabled {
+	pointer-events: none;
+}
+
 /* Footer */
 footer {
 	height: 6rem;

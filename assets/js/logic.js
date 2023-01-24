@@ -50,7 +50,6 @@ next_btn.onclick = () => {
 // getting questions and options from array
 function showQuestions(index) {
 	const question_text = document.querySelector(".question_text");
-	const option_list = document.querySelector(".option_list");
 	let question_tag = `<span>${questions[index].number}: ${questions[index].question}</span>`;
 
 	let option_tag =
@@ -70,16 +69,21 @@ function showQuestions(index) {
 function optionSelected(answer) {
 	let userAnswer = answer.textContent;
 	let correctAnswer = questions[question_count].answer;
+	let allOptions = option_list.children.length;
 	if (userAnswer.trim() == correctAnswer.trim()) {
-        answer.classList.add("correct")
+		answer.classList.add("correct");
 		console.log(`Answer is correct!`);
 	} else {
-        answer.classList.add("wrong")
-        console.log(`Answer is wrong!`);
-    }
-}
+		answer.classList.add("wrong");
+		console.log(`Answer is wrong!`);
 
-//  Once user has selected - disable all options
+        // If answers are incorrect/wrong then automatically select the correct answer
+	}
+	//  Once user has selected - disable all options
+	for (let i = 0; i < allOptions; i++) {
+		option_list.children[i].classList.add("disabled");
+	}
+}
 
 function questionCounter(index) {
 	const bottom_question_counter = quiz_box.querySelector(".total_questions");
