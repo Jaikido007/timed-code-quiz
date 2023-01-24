@@ -5,7 +5,7 @@ const exit_btn = info_box.querySelector(".buttons .quit");
 const continue_btn = info_box.querySelector(".buttons .restart");
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
-const option_list = document.querySelector(".options_list");
+const option_list = document.querySelector(".option_list");
 const time_line = document.querySelector("header .time_line");
 const time_text = document.querySelector(".timer .time_text");
 const time_count = document.querySelector(".timer .timer_sec");
@@ -25,5 +25,22 @@ exit_btn.onclick = () => {
 continue_btn.onclick = () => {
 	info_box.classList.remove("activeInfo"); // hide the info box
     quiz_box.classList.add("activeQuiz"); // show the quiz box
+    showQuestions(0);
 };
 
+let question_count = 0;
+
+
+// getting questions and options from array
+function showQuestions(index) {
+    const question_text = document.querySelector(".question_text")
+    const option_list = document.querySelector(".option_list")
+    let question_tag = `<span>${questions[index].question}</span>`;
+    let option_tag = 
+    `<div class="option"> ${questions[index].options[0]} <span></span></div>`
+    +     `<div class="option"> ${questions[index].options[1]} <span></span></div>`
+    +     `<div class="option"> ${questions[index].options[2]} <span></span></div>`
+    +     `<div class="option"> ${questions[index].options[3]} <span></span></div>`
+    question_text.innerHTML = question_tag;
+    option_list.innerHTML = option_tag;
+}

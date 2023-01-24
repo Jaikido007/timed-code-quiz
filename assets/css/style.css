@@ -210,11 +210,6 @@ body {
 	font-weight: 600;
 }
 
-.quiz_box section .option_list {
-	padding: 2rem 0;
-	display: block;
-}
-
 section .option_list .option {
 	background: aliceblue;
 	border: 0.1rem solid #84c5fe;
@@ -227,6 +222,11 @@ section .option_list .option {
 	justify-content: space-between;
 	cursor: pointer;
 	transition: all 0.3s ease;
+}
+
+.quiz_box section .option_list {
+	padding: 2rem 0;
+	display: block;
 }
 
 section .option_list .option:hover {
