@@ -36,8 +36,12 @@ let question_number = 1;
 let counter;
 let timeValue = 15;
 let widthValue = 0;
+let userScore = 0;
 
 const next_btn = document.querySelector(".next_btn");
+const restart_quiz = result_box.querySelector(".buttons .restart");
+const quit_quiz = result_box.querySelector(".buttons .quit");
+
 
 // If Next button is clicked
 
@@ -56,6 +60,7 @@ next_btn.onclick = () => {
         // !
 	} else {
 		console.log(`Questions completed`);
+        showResultBox();
 	}
 };
 
@@ -89,8 +94,9 @@ function optionSelected(answer) {
 	let userAnswer = answer.textContent;
 	let correctAnswer = questions[question_count].answer;
 	let allOptions = option_list.children.length;
-
 	if (userAnswer.trim() == correctAnswer.trim()) {
+        userScore += 1;
+        console.log(userScore);
 		answer.classList.add("correct");
 		console.log(`Answer is correct!`);
 		answer.insertAdjacentHTML("beforeend", tickIcon);
@@ -112,6 +118,35 @@ function optionSelected(answer) {
 		option_list.children[i].classList.add("disabled");
 	}
     next_btn.style.display = "block";
+}
+
+// Result box
+
+function showResultBox() {
+    info_box.classList.remove("activeInfo"); // hide the info box
+	quiz_box.classList.remove("activeQuiz"); // hide the quiz box
+    result_box.classList.add("activeResult"); // show the result box
+    const score_text = result_box.querySelector(".score_text");
+    // ! Change dependant on final questions.length - this is based on 5!
+    if(userScore == 5) {
+        let scoreTag = `<span>Top marks, you scored a mighty <p>${userScore}</p> out of <p>${questions.length}</p></span>`
+        score_text.innerHTML = scoreTag;
+    }
+    else if(userScore > 3) {
+        let scoreTag = `<span>Congrats, you scored <p>${userScore}</p> out of <p>${questions.length}</p></span>`
+        score_text.innerHTML = scoreTag;
+    }
+    else if(userScore > 0 && userScore <= 2) {
+        let scoreTag = `<span>Sorry, you only scored <p>${userScore}</p> out of <p>${questions.length}</p></span>`
+        score_text.innerHTML = scoreTag;
+    }
+    else if (userScore == 0) {
+        let scoreTag = `<span>Epic fail, you scored <p>${userScore}</p> out of <p>${questions.length}</p></span>`
+        score_text.innerHTML = scoreTag;
+    } else {
+        let scoreTag = `<span>You managed to score <p>${userScore}</p> out of <p>${questions.length}</p></span>`
+        score_text.innerHTML = scoreTag;
+    }
 }
 
 // The timer
