@@ -262,6 +262,18 @@ section .option_list .option:hover {
 	background: #f8d7da;
 }
 
+.option_list .option.correct {
+	color: #23903c;
+	border-color: #23903c;
+	background: #b4edda;
+}
+
+.option_list .option.wrong {
+	color: #a4283a;
+	border-color: #a4283a;
+	background: #f8d7da;
+}
+
 /* Footer */
 footer {
 	height: 6rem;

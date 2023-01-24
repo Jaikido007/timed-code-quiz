@@ -71,11 +71,15 @@ function optionSelected(answer) {
 	let userAnswer = answer.textContent;
 	let correctAnswer = questions[question_count].answer;
 	if (userAnswer.trim() == correctAnswer.trim()) {
+        answer.classList.add("correct")
 		console.log(`Answer is correct!`);
 	} else {
+        answer.classList.add("wrong")
         console.log(`Answer is wrong!`);
     }
 }
+
+//  Once user has selected - disable all options
 
 function questionCounter(index) {
 	const bottom_question_counter = quiz_box.querySelector(".total_questions");
