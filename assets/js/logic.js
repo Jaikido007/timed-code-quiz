@@ -66,6 +66,9 @@ function showQuestions(index) {
 	}
 }
 
+let tickIcon = `<div class="icon tick"><i class="fas fa-check"></i></div>`;
+let crossIcon = `<div class="icon cross"><i class="fas fa-xmark"></i></div>`;
+
 function optionSelected(answer) {
 	let userAnswer = answer.textContent;
 	let correctAnswer = questions[question_count].answer;
@@ -74,13 +77,16 @@ function optionSelected(answer) {
 	if (userAnswer.trim() == correctAnswer.trim()) {
 		answer.classList.add("correct");
 		console.log(`Answer is correct!`);
+        answer.insertAdjacentHTML("beforeend", tickIcon)
 	} else {
 		answer.classList.add("wrong");
 		console.log(`Answer is wrong!`);
+        answer.insertAdjacentHTML("beforeend", crossIcon)
 		// If answers are incorrect/wrong then automatically select the correct answer.
 		for (let i = 0; i < allOptions; i++) {
 			if (option_list.children[i].textContent.trim() == correctAnswer.trim()) {
                 option_list.children[i].setAttribute("class", 'option correct');
+                option_list.children[i].insertAdjacentHTML("beforeend", tickIcon)
 			}
 		}
 	}

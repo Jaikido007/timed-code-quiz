@@ -263,14 +263,14 @@ section .option_list .option:hover {
 }
 
 .option_list .option.correct {
-	color: #23903c;
-	border-color: #23903c;
-	background: #b4edda;
+	color: #155724;
+	border-color: #c3e6cb;
+	background: #d4edda;
 }
 
 .option_list .option.wrong {
-	color: #a4283a;
-	border-color: #a4283a;
+	color: #721c24;
+	border-color: #f5c6cb;
 	background: #f8d7da;
 }
 
