@@ -3,12 +3,8 @@ let questions = [
     {
         number: 1,
         question: "How do you write 'Hello, World!' in an alert box?",
-        answer: "alert('Hello, world!')",
-        options: [
-            "alertBox('Hello, world!')", 
-            "alert('Hello, world!')", 
-            "msg('Hello, world!')", 
-            "msgBox('Hello, world!')"
+        answer: `alert('Hello, World!')`,
+        options: [`alertBox('Hello, World!')`, `alert('Hello, World!')`, `msg('Hello, World!')`, `msgBox('Hello, World!')`
         ]
     },
 
@@ -38,7 +34,7 @@ let questions = [
             "a", "b", "c", "d"
         ]
     },
-    
+
     {
         number: 5,
         question: "Test5",
