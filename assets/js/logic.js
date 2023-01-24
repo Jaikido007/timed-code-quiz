@@ -70,15 +70,21 @@ function optionSelected(answer) {
 	let userAnswer = answer.textContent;
 	let correctAnswer = questions[question_count].answer;
 	let allOptions = option_list.children.length;
+
 	if (userAnswer.trim() == correctAnswer.trim()) {
 		answer.classList.add("correct");
 		console.log(`Answer is correct!`);
 	} else {
 		answer.classList.add("wrong");
 		console.log(`Answer is wrong!`);
-
-        // If answers are incorrect/wrong then automatically select the correct answer
+		// If answers are incorrect/wrong then automatically select the correct answer.
+		for (let i = 0; i < allOptions; i++) {
+			if (option_list.children[i].textContent.trim() == correctAnswer.trim()) {
+                option_list.children[i].setAttribute("class", 'option correct');
+			}
+		}
 	}
+
 	//  Once user has selected - disable all options
 	for (let i = 0; i < allOptions; i++) {
 		option_list.children[i].classList.add("disabled");
