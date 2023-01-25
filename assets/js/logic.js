@@ -1,8 +1,9 @@
 // Getting all required elements
 const start_btn = document.querySelector(".start_btn button");
 const info_box = document.querySelector(".info_box");
-const exit_btn = info_box.querySelector(".buttons .quit");
-const continue_btn = info_box.querySelector(".buttons .restart");
+const scores_btn = document.querySelector(".buttons .scores");
+const exit_btn = document.querySelector(".buttons .quit");
+const continue_btn = document.querySelector(".buttons .restart");
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
 const option_list = document.querySelector(".option_list");
@@ -14,6 +15,12 @@ const next_btn = document.querySelector(".next_btn");
 // If start quiz button clicked
 start_btn.onclick = () => {
 	info_box.classList.add("activeInfo"); // show the info box
+};
+
+// If scores button clicked
+scores_btn.onclick = () => {
+	window.location.href = "highscores.html";
+	console.log("clicked");
 };
 
 // If exit quiz button clicked
@@ -28,7 +35,7 @@ continue_btn.onclick = () => {
 	showQuestions(0); // calling showQuestions function
 	questionCounter(1); // passing 1 parameter to questionCounter
 	startTimer(15); // calling startTimer function
-	startTimerLine(0); // calling startTimer function
+	// startTimerLine(0); // calling startTimer function
 };
 
 let question_count = 0;
@@ -38,7 +45,6 @@ let counter_line;
 let timeValue = 15;
 let widthValue = 0;
 let userScore = 0;
-
 
 const restart_quiz = result_box.querySelector(".buttons .restart");
 const quit_quiz = result_box.querySelector(".buttons .quit");
@@ -55,19 +61,31 @@ restart_quiz.onclick = () => {
 	showQuestions(question_count);
 	questionCounter(question_number);
 	next_btn.style.display = "none";
-    time_text.textContent = "Time Remaining";
+	time_text.textContent = "Time Remaining";
 	// ! remove for one full timer across all questions
 	clearInterval(counter);
 	startTimer(timeValue);
 	clearInterval(counter_line);
-	startTimerLine(widthValue);
+	// startTimerLine(widthValue);
 	// !
 };
 
-// If quiz button clicked
+// If quit button clicked
 quit_quiz.onclick = () => {
 	window.location.reload(); // reload the current window
 };
+
+// Function to save score and initials to local storage
+function saveScore(initials, score) {
+	// Retrieve existing scores from local storage
+	let highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+	// Add new score and initials to highscores array
+	highscores.push({ initials, score });
+	// Sort high scores by score in descending order
+	highscores.sort((a, b) => b.score - a.score);
+	// Save high scores to local storage
+	localStorage.setItem("highscores", JSON.stringify(highscores));
+}
 
 // If Next button is clicked
 next_btn.onclick = () => {
@@ -77,27 +95,33 @@ next_btn.onclick = () => {
 		showQuestions(question_count);
 		questionCounter(question_number);
 		next_btn.style.display = "none";
-        time_text.textContent = "Time Remaining";
+		time_text.textContent = "Time Remaining";
 		// ! remove for one full timer across all questions
 		clearInterval(counter);
 		startTimer(timeValue);
 		clearInterval(counter_line);
-		startTimerLine(widthValue);
+		// startTimerLine(widthValue);
 		// !
 	} else {
 		showResultBox();
-        // !
-        clearInterval(counter);
-        clearInterval(counter_line);
-        // !
+		// !
+		clearInterval(counter);
+		clearInterval(counter_line);
+		// !
+		// After the quiz is finished
+		let userInitials = prompt("Please enter your name or initials:");
+		saveScore(userInitials, userScore);
+		scores_btn.onclick = () => {
+			window.location.href = "highscores.html";
+		};
 	}
 };
 
 // getting questions and options from array
 function showQuestions(index) {
 	const question_text = document.querySelector(".question_text");
-	let question_tag = `<span>${questions[index].number}: ${questions[index].question}</span>`;	
-    let option_tag =
+	let question_tag = `<span>${questions[index].number}: ${questions[index].question}</span>`;
+	let option_tag =
 		`<div class="option"> ${questions[index].options[0]} <span></span></div>` +
 		`<div class="option"> ${questions[index].options[1]} <span></span></div>` +
 		`<div class="option"> ${questions[index].options[2]} <span></span></div>` +
@@ -128,21 +152,21 @@ function optionSelected(answer) {
 		userScore += 1;
 		answer.classList.add("correct");
 		answer.insertAdjacentHTML("beforeend", tickIcon);
-        console.log(`Correct answer!`);
-        console.log(`Correct answers = ${userScore}`);
+		console.log(`Correct answer!`);
+		console.log(`Correct answers = ${userScore}`);
 	} else {
 		answer.classList.add("wrong");
 		answer.insertAdjacentHTML("beforeend", crossIcon);
-        console.log(`Wrong answer!`);
+		console.log(`Wrong answer!`);
 
 		// If answers are incorrect/wrong then automatically select the correct answer.
 		for (let i = 0; i < allOptions; i++) {
 			if (option_list.children[i].textContent.trim() == correctAnswer.trim()) {
 				option_list.children[i].setAttribute("class", "option correct");
 				option_list.children[i].insertAdjacentHTML("beforeend", tickIcon);
-			
-            console.log(`Auto selected the correct answer`)
-            }
+
+				console.log(`Auto selected the correct answer`);
+			}
 		}
 	}
 
@@ -158,6 +182,10 @@ function showResultBox() {
 	info_box.classList.remove("activeInfo"); // hide the info box
 	quiz_box.classList.remove("activeQuiz"); // hide the quiz box
 	result_box.classList.add("activeResult"); // show the result box
+	scores_btn.onclick = () => {
+		window.location.href = "highscores.html";
+		console.log(`clicked`);
+	};
 	const score_text = result_box.querySelector(".score_text");
 	// ! Change dependant on final questions.length - this is based on 5!
 	if (userScore == 5) {
@@ -193,9 +221,9 @@ function startTimer(time) {
 		if (time < 0) {
 			clearInterval(counter);
 			// time_count.textContent = "00";
-            time_text.textContent = "Timed Out";
+			time_text.textContent = "Timed Out";
 
-            let correctAnswer = questions[question_count].answer;
+			let correctAnswer = questions[question_count].answer;
 			let allOptions = option_list.children.length;
 
 			for (let i = 0; i < allOptions; i++) {
@@ -206,24 +234,25 @@ function startTimer(time) {
 					option_list.children[i].insertAdjacentHTML("beforeend", tickIcon);
 				}
 			}
-            for (let i = 0; i < allOptions; i++) {
-                option_list.children[i].classList.add("disabled");
-            }
-            next_btn.style.display = "block";
+			for (let i = 0; i < allOptions; i++) {
+				option_list.children[i].classList.add("disabled");
+			}
+			next_btn.style.display = "block";
 		}
 	}
 }
 
-function startTimerLine(time) {
-	counter_line = setInterval(timer, 29);
-	function timer() {
-		time += 1;
-		time_line.style.width = time + "px";
-		if (time > 549) {
-			clearInterval(counter_line);
-		}
-	}
-}
+// function startTimerLine(time) {
+// 	counter_line = setInterval(timer, 29);
+// 	function timer() {
+//         time += 1;
+// 		// time += 0.26; //60seconds
+// 		time_line.style.width = time + "px";
+// 		if (time > 549) {
+// 			clearInterval(counter_line);
+// 		}
+// 	}
+// }
 
 // Question counter
 function questionCounter(index) {
