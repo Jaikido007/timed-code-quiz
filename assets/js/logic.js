@@ -101,14 +101,14 @@ next_btn.onclick = () => {
 		timeValue = time_count.textContent;
 		clearInterval(counter);
 		startTimer(timeValue);
-        clearInterval(counter_line)
-        startTimerLine(widthValue);
+		clearInterval(counter_line);
+		startTimerLine(widthValue);
 	} else {
 		showResultBox();
 		clearInterval(counter);
-        clearInterval(counter_line);
+		clearInterval(counter_line);
 		// After the quiz is finished
-		endGame()
+		endGame();
 	}
 };
 
@@ -154,7 +154,7 @@ function optionSelected(answer) {
 		answer.insertAdjacentHTML("beforeend", crossIcon);
 		timeValue -= 10;
 		if (timeValue < 0) {
-			endGame()
+			endGame();
 		}
 		time_count.textContent = timeValue;
 		console.log(`Wrong answer!`);
@@ -207,39 +207,17 @@ function showResultBox() {
 }
 
 // Start the timer
-function startTimer(time) {
-	counter = setInterval(timer, 1000);
-	function timer() {
-		time_count.textContent = time;
-		time--;
+function startTimer(duration) {
+	let timer = duration;
 
-		if (time < 9) {
-			let addZero = time_count.textContent;
-			time_count.textContent = "0" + addZero;
-		}
+	counter = setInterval(() => {
+		time_count.textContent = timer;
 
-		if (time < 0) {
+		if (--timer <= 0) {
 			clearInterval(counter);
-			time_count.textContent = "00";
-			time_text.textContent = "Timed Out";
-
-			let correctAnswer = questions[question_count].answer;
-			let allOptions = option_list.children.length;
-
-			for (let i = 0; i < allOptions; i++) {
-				if (
-					option_list.children[i].textContent.trim() == correctAnswer.trim()
-				) {
-					option_list.children[i].setAttribute("class", "option correct");
-					option_list.children[i].insertAdjacentHTML("beforeend", tickIcon);
-				}
-			}
-			for (let i = 0; i < allOptions; i++) {
-				option_list.children[i].classList.add("disabled");
-			}
-			next_btn.style.display = "block";
+			endGame();
 		}
-	}
+	}, 1000);
 }
 
 // function startTimerLine(time) {
@@ -262,9 +240,12 @@ function questionCounter(index) {
 }
 
 function endGame() {
-    let userInitials = prompt("Please enter your name or initials:");
-    saveScore(userInitials, userScore);
-    scores_btn.onclick = () => {
-        window.location.href = "highscores.html";
-    };
+	quiz_box.classList.remove("activeQuiz");
+	result_box.classList.add("activeResult");
+	clearInterval(counter);
+	let userInitials = prompt("Please enter your name or initials:");
+	saveScore(userInitials, userScore);
+	scores_btn.onclick = () => {
+		window.location.href = "highscores.html";
+	};
 }
