@@ -6,6 +6,7 @@ const exit_btn = document.querySelector(".buttons .quit");
 const continue_btn = document.querySelector(".buttons .restart");
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
+const scores_box = document.querySelector(".scores_box");
 const option_list = document.querySelector(".option_list");
 const time_line = document.querySelector("header .time_line");
 const time_text = document.querySelector(".timer .time_text");

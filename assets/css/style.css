@@ -32,7 +32,8 @@ body {
 .start_btn,
 .info_box,
 .quiz_box,
-.result_box {
+.result_box,
+.scores_box {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -391,6 +392,55 @@ footer .next_btn {
 	margin: 0 0.5rem;
 	height: 5rem;
 	width: 10rem;
+	padding: 0 3.5rem;
+	border: none;
+	outline: none;
+	font-size: 1.6rem;
+	font-weight: 500;
+	border-radius: 0.5rem;
+	border: 0.1rem solid var(--main);
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+/* HIGHSCORES.HTML */
+.scores_box {
+	font-size: 1.6rem;
+	background: var(--white);
+	width: 45rem;
+	padding: 2.5rem 3rem;
+	border-radius: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.scores_box h1 {
+	margin-bottom: 5rem;
+}
+
+.scores li::marker {
+	color: red;
+}
+
+.scores_box .buttons {
+	margin-top: 5rem;
+	height: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 0 3.5rem;
+}
+
+.scores_box .buttons button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 0.5rem;
+	height: 4rem;
+	width: 20rem;
 	padding: 0 3.5rem;
 	border: none;
 	outline: none;
