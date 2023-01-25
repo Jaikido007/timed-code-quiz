@@ -243,7 +243,11 @@ function endGame() {
 	quiz_box.classList.remove("activeQuiz");
 	result_box.classList.add("activeResult");
 	clearInterval(counter);
-	let userInitials = prompt("Please enter your name or initials:");
+
+	let userInitials;
+    while (!userInitials) {
+        userInitials = prompt("Please enter your name or initials:");
+    } 
 	saveScore(userInitials, userScore);
 	scores_btn.onclick = () => {
 		window.location.href = "highscores.html";
