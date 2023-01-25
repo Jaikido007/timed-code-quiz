@@ -16,12 +16,7 @@ let questions = [
 		number: 2,
 		question: "Inside which element <> do you put JavaScript?",
 		answer: `script`,
-		options: [
-            `var`, 
-            `script`, 
-            `section`, 
-            `link`
-        ],
+		options: [`var`, `script`, `section`, `link`],
 	},
 
 	{
@@ -63,20 +58,13 @@ let questions = [
 
 	{
 		number: 6,
-		question: "What is the keyword used to declare a variable in JavaScript?",
-		answer: "var",
-		options: ["let", "const", "var", "variable"],
-	},
-
-	{
-		number: 7,
 		question: "How do you add two numbers in JavaScript?",
 		answer: "3 + 5",
 		options: ["3 + '5'", "add(3, 5)", "3 & 5", "3 + 5"],
 	},
 
 	{
-		number: 8,
+		number: 7,
 		question: "What is the syntax for an if statement in JavaScript?",
 		answer: "if (condition) { }",
 		options: [
@@ -88,7 +76,7 @@ let questions = [
 	},
 
 	{
-		number: 9,
+		number: 8,
 		question: "What is the syntax for a while loop in JavaScript?",
 		answer: "while (condition) { }",
 		options: [
@@ -100,7 +88,7 @@ let questions = [
 	},
 
 	{
-		number: 10,
+		number: 9,
 		question: "How do you add an element to an array in JavaScript?",
 		answer: "colors.push('purple');",
 		options: [
@@ -112,7 +100,27 @@ let questions = [
 	},
 
 	{
+		number: 10,
+		question: "How do you get the current date and time in JavaScript?",
+		answer: "new Date()",
+		options: ["getDate()", "getTime()", "Date.now()", "new Date()"],
+	},
+
+	{
 		number: 11,
+		question:
+			"How do you check if a variable is a finite number in JavaScript?",
+		answer: "isFinite(myVariable)",
+		options: [
+			"myVariable.isFinite()",
+			"Number.isFinite(myVariable)",
+			"!isNaN(myVariable) && !isInfinite(myVariable)",
+			"isFinite(myVariable)",
+		],
+	},
+
+	{
+		number: 12,
 		question: "How do you check if a variable is an array in JavaScript?",
 		answer: "Array.isArray(myVariable)",
 		options: [
@@ -124,7 +132,19 @@ let questions = [
 	},
 
 	{
-		number: 12,
+		number: 13,
+		question: "How do you check if a variable is NaN in JavaScript?",
+		answer: "isNaN(myVariable)",
+		options: [
+			"myVariable.isNaN()",
+			"Number.isNaN(myVariable)",
+			"isNaN(parseFloat(myVariable))",
+			"isNaN(myVariable)",
+		],
+	},
+
+	{
+		number: 14,
 		question: "How do you check if a number is an integer in JavaScript?",
 		answer: "Number.isInteger(myNumber)",
 		options: [
@@ -136,7 +156,19 @@ let questions = [
 	},
 
 	{
-		number: 13,
+		number: 15,
+		question: "How do you create a new object in JavaScript?",
+		answer: "new Object()",
+		options: [
+			"var obj = {}",
+			"var obj = Object.create()",
+			"var obj = Object.assign()",
+			"new Object()",
+		],
+	},
+
+	{
+		number: 16,
 		question: "How do you check if a variable is undefined in JavaScript?",
 		answer: "typeof myVariable === 'undefined'",
 		options: [
@@ -148,7 +180,14 @@ let questions = [
 	},
 
 	{
-		number: 14,
+		number: 17,
+		question: "How do you get the length of a string in JavaScript?",
+		answer: "str.length",
+		options: ["str.size()", "str.count()", "str.len()", "str.length"],
+	},
+
+	{
+		number: 18,
 		question: "How do you check if a variable is null in JavaScript?",
 		answer: "myVariable === null",
 		options: [
@@ -159,8 +198,15 @@ let questions = [
 		],
 	},
 
+    {
+		number: 19,
+		question: "How do you get the first element of an array in JavaScript?",
+		answer: "array[0]",
+		options: ["array.first()", "array.get(0)", "array.pop()", "array[0]"],
+	},
+
 	{
-		number: 15,
+		number: 20,
 		question: "How do you check if a variable is a string in JavaScript?",
 		answer: "typeof myVariable === 'string'",
 		options: [
@@ -171,8 +217,20 @@ let questions = [
 		],
 	},
 
+    {
+		number: 21,
+		question: "How do you get the last element of an array in JavaScript?",
+		answer: "array[array.length - 1]",
+		options: [
+			"array.last()",
+			"array.get(-1)",
+			"array.shift()",
+			"array[array.length - 1]",
+		],
+	},
+
 	{
-		number: 16,
+		number: 22,
 		question: "How do you check if a variable is a boolean in JavaScript?",
 		answer: "typeof myVariable === 'boolean'",
 		options: [
@@ -183,8 +241,21 @@ let questions = [
 		],
 	},
 
+    {
+		number: 23,
+		question:
+			"How do you remove an element from an array by its value in JavaScript?",
+		answer: "array.splice(array.indexOf(value), 1)",
+		options: [
+			"array.remove(value)",
+			"delete array[array.indexOf(value)]",
+			"array.filter(el => el !== value)",
+			"array.splice(array.indexOf(value), 1)",
+		],
+	},
+
 	{
-		number: 17,
+		number: 24,
 		question: "How do you check if a variable is a number in JavaScript?",
 		answer: "typeof myVariable === 'number'",
 		options: [
@@ -194,9 +265,21 @@ let questions = [
 			"typeof myVariable === 'number'",
 		],
 	},
+    
+	{
+		number: 25,
+		question: "How do you merge two arrays in JavaScript?",
+		answer: "array1.concat(array2)",
+		options: [
+			"array1 + array2",
+			"array1.push(...array2)",
+			"array1.merge(array2)",
+			"array1.concat(array2)",
+		],
+	},
 
 	{
-		number: 18,
+		number: 26,
 		question: "How do you check if a variable is an object in JavaScript?",
 		answer: "typeof myVariable === 'object'",
 		options: [
@@ -207,8 +290,21 @@ let questions = [
 		],
 	},
 
+    {
+		number: 27,
+		question:
+			"How do you check if a variable is an instance of a specific class in JavaScript?",
+		answer: "variable instanceof Class",
+		options: [
+			"variable.isInstanceOf(Class)",
+			"Class.isPrototypeOf(variable)",
+			"variable.constructor === Class",
+			"variable instanceof Class",
+		],
+	},
+
 	{
-		number: 19,
+		number: 28,
 		question: "How do you check if a variable is a function in JavaScript?",
 		answer: "typeof myVariable === 'function'",
 		options: [
@@ -219,9 +315,21 @@ let questions = [
 		],
 	},
 
+    {
+		number: 29,
+		question: "How do you print the value of a variable to the console?",
+		answer: "console.log(myVariable)",
+		options: [
+			"console.print(myVariable)",
+			"console.show(myVariable)",
+			"console.info(myVariable)",
+			"console.log(myVariable)",
+		],
+	},
+
 	{
-		number: 20,
-		question: "How do you check if a string is a palindrome in JavaScript?",
+		number: 30,
+		question: "How do you check if a string is a palindrome?",
 		answer: "str === str.split('').reverse().join('')",
 		options: [
 			"str.isPalindrome()",
