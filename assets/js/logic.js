@@ -33,7 +33,7 @@ continue_btn.onclick = () => {
 	quiz_box.classList.add("activeQuiz"); // show the quiz box
 	showQuestions(0); // calling showQuestions function
 	questionCounter(1); // passing 1 parameter to questionCounter
-	startTimer(30); // calling startTimer function
+	startTimer(60); // calling startTimer function
 	startTimerLine(0); // calling startTimer function
 };
 
@@ -41,7 +41,7 @@ let question_count = 0;
 let question_number = 1;
 let counter;
 let counter_line;
-let timeValue = 30;
+let timeValue = 60;
 let widthValue = 0;
 let userScore = 0;
 
@@ -54,7 +54,7 @@ restart_quiz.onclick = () => {
 	result_box.classList.remove("activeResult"); // hide result box
 	question_count = 0;
 	question_number = 1;
-	timeValue = 30;
+	timeValue = 60;
 	widthValue = 0;
 	userScore = 0;
 	showQuestions(question_count);
