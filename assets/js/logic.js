@@ -20,7 +20,6 @@ start_btn.onclick = () => {
 // If scores button clicked
 scores_btn.onclick = () => {
 	window.location.href = "highscores.html";
-	console.log("clicked");
 };
 
 // If exit quiz button clicked
@@ -34,15 +33,15 @@ continue_btn.onclick = () => {
 	quiz_box.classList.add("activeQuiz"); // show the quiz box
 	showQuestions(0); // calling showQuestions function
 	questionCounter(1); // passing 1 parameter to questionCounter
-	startTimer(15); // calling startTimer function
-	// startTimerLine(0); // calling startTimer function
+	startTimer(30); // calling startTimer function
+	startTimerLine(0); // calling startTimer function
 };
 
 let question_count = 0;
 let question_number = 1;
 let counter;
 let counter_line;
-let timeValue = 15;
+let timeValue = 30;
 let widthValue = 0;
 let userScore = 0;
 
@@ -55,7 +54,7 @@ restart_quiz.onclick = () => {
 	result_box.classList.remove("activeResult"); // hide result box
 	question_count = 0;
 	question_number = 1;
-	timeValue = 15;
+	timeValue = 30;
 	widthValue = 0;
 	userScore = 0;
 	showQuestions(question_count);
@@ -66,7 +65,7 @@ restart_quiz.onclick = () => {
 	clearInterval(counter);
 	startTimer(timeValue);
 	clearInterval(counter_line);
-	// startTimerLine(widthValue);
+	startTimerLine(widthValue);
 	// !
 };
 
@@ -83,6 +82,8 @@ function saveScore(initials, score) {
 	highscores.push({ initials, score });
 	// Sort high scores by score in descending order
 	highscores.sort((a, b) => b.score - a.score);
+	// Keep only the top 10 scores
+	highscores = highscores.slice(0, 10);
 	// Save high scores to local storage
 	localStorage.setItem("highscores", JSON.stringify(highscores));
 }
@@ -96,24 +97,17 @@ next_btn.onclick = () => {
 		questionCounter(question_number);
 		next_btn.style.display = "none";
 		time_text.textContent = "Time Remaining";
-		// ! remove for one full timer across all questions
+		timeValue = time_count.textContent;
 		clearInterval(counter);
 		startTimer(timeValue);
-		clearInterval(counter_line);
-		// startTimerLine(widthValue);
-		// !
+        clearInterval(counter_line)
+        startTimerLine(widthValue);
 	} else {
 		showResultBox();
-		// !
 		clearInterval(counter);
-		clearInterval(counter_line);
-		// !
+        clearInterval(counter_line);
 		// After the quiz is finished
-		let userInitials = prompt("Please enter your name or initials:");
-		saveScore(userInitials, userScore);
-		scores_btn.onclick = () => {
-			window.location.href = "highscores.html";
-		};
+		endGame()
 	}
 };
 
@@ -157,6 +151,11 @@ function optionSelected(answer) {
 	} else {
 		answer.classList.add("wrong");
 		answer.insertAdjacentHTML("beforeend", crossIcon);
+		timeValue -= 10;
+		if (timeValue < 0) {
+			endGame()
+		}
+		time_count.textContent = timeValue;
 		console.log(`Wrong answer!`);
 
 		// If answers are incorrect/wrong then automatically select the correct answer.
@@ -220,7 +219,7 @@ function startTimer(time) {
 
 		if (time < 0) {
 			clearInterval(counter);
-			// time_count.textContent = "00";
+			time_count.textContent = "00";
 			time_text.textContent = "Timed Out";
 
 			let correctAnswer = questions[question_count].answer;
@@ -245,8 +244,8 @@ function startTimer(time) {
 // function startTimerLine(time) {
 // 	counter_line = setInterval(timer, 29);
 // 	function timer() {
-//         time += 1;
-// 		// time += 0.26; //60seconds
+//         // time += 1;
+// 		time += 0.26; //60seconds
 // 		time_line.style.width = time + "px";
 // 		if (time > 549) {
 // 			clearInterval(counter_line);
@@ -259,4 +258,12 @@ function questionCounter(index) {
 	const bottom_question_counter = quiz_box.querySelector(".total_questions");
 	let totalQuestionsCountTag = `<span><p>${index}</p> of <p>${questions.length}</p>Questions</span>`;
 	bottom_question_counter.innerHTML = totalQuestionsCountTag;
+}
+
+function endGame() {
+    let userInitials = prompt("Please enter your name or initials:");
+    saveScore(userInitials, userScore);
+    scores_btn.onclick = () => {
+        window.location.href = "highscores.html";
+    };
 }
